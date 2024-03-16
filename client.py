@@ -2,9 +2,23 @@ import streamlit as st
 from api_call_openai import conversation
 
 # Initial value of chat history
-chat_history = [{
-    "role": "assistant",
-    "content": "How can I help you"
+chat_history = [
+    {
+        "role": "system",
+        "content": "Your task is to ask information regarding the garden of the user.\
+            You are interested in the following information: \
+            - The state, where the user lives in,\
+            - Is the garden sunny, partly shaded, or shaded,\
+            - Is the soil of the users garden dry, moist, or wet.\
+            You ask the user for these information and provide the information back the user\
+            in a structured way for example:\
+            State: Michigan\
+            \nSun: partly-shaded\n\
+            \nSoil: moist",
+    },
+    {
+        "role": "assistant",
+        "content": "How can I help you"
     }]
 
 # Check if the dictionary exists in session state
@@ -65,11 +79,12 @@ def main():
         st.chat_input("Ask the AI agent for help", on_submit=submit_handler, key="user_input")
 
     with col2:
-        st.button('Reset', on_click=reset_handler)
+        st.button("Reset", on_click=reset_handler)
 
     # Print messages in chat history stack
     for chat_message in st.session_state["chat_history"]:
-        chatbox.chat_message(chat_message["role"]).write(chat_message["content"])
+        if chat_message["role"] != "system":
+            chatbox.chat_message(chat_message["role"]).write(chat_message["content"])
 
     # Print error messages to the message stack
     # Error messages are not added to the chat history stack
@@ -81,6 +96,7 @@ def main():
     st.write("Disclaimer: The data used in this app has been taken from Native Plant Information Network, NPIN (2013).\
              \nPublished on the Internet https://www.wildflower.org/collections/ [accessed March 16, 2024]. \
              \nLady Bird Johnson Wildflower Center at The University of Texas, Austin, TX.")
+
 
 if __name__ == "__main__":
     main()
