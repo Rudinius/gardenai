@@ -19,6 +19,15 @@ def load_data(path, file_name):
     return df
 
 def filter_dataframe(df, filter_dict):
+    """
+        Utility funciton that filters a dataframe based on a dictionary
+        Arguments:
+            df (Pandas DataFrame)
+            filter_dict (dict)
+        Returns:
+            df_filtered (Pandas DataFrame)
+    """
+
     df_filtered = df.copy()
     for key, value in filter_dict.items():
         # Case-insensitive comparison for keys

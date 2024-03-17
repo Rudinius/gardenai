@@ -3,7 +3,7 @@ from openai import OpenAI
 from openai import APIError
 
 # Get API key from environment variables
-API_KEY = os.environ.get("STUDYAI_API_KEY", "If ENVVAR not set, paste API key here")
+API_KEY = os.environ.get("GARDENAI_API_KEY", "If ENVVAR not set, paste API key here")
 client = OpenAI(api_key=API_KEY)
 
 tools = [
