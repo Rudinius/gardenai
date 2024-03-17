@@ -2,28 +2,28 @@
 
 ## Installation Instructions:
 
-Clone the repository 
-'git clone https://github.com/Rudinius/gardenai.git'
+1. Clone the repository 
+`git clone https://github.com/Rudinius/gardenai.git`
 
-Create a virtual environment for installing packages
-'python -m venv .venv'
-'cd .venv/Scripts'
-'activate.bat' (for command prompt. choose script depending on console being used)
+2. Create a virtual environment for installing packages
+`python -m venv .venv`
+`cd .venv/Scripts`
+`activate.bat` (for command prompt. choose script depending on console being used)
 
-Navigate to the folder gardenai and install the packages of requirements.txt
-'python -m pip install -r requirements.txt'
+3. Navigate to the folder gardenai and install the packages of requirements.txt
+`python -m pip install -r requirements.txt`
 
-Start streamlit
-'python -m streamlit run client.py'
+4. Start streamlit from the parent folder gardenai
+`python -m streamlit run client.py`
 
-The browser should open with the running application.
-If not open the browser under 'http://localhost:8501/' or which ever is the output in the terminal.
+5. The browser should open with the running application.
+If not open the browser under http://localhost:8501/ or which ever is the output in the terminal.
 
 ## API Key
 The API key has to be provided as an environment variable with name
-'GARDENAI_API_KEY'.
-The app uses 'gpt-3.5-turbo'.
-API keys can be created here: 'https://platform.openai.com/api-keys'
+`GARDENAI_API_KEY`.
+The app uses gpt-3.5-turbo.
+API keys can be created here: https://platform.openai.com/api-keys
 
 ## Example of usage:
 
@@ -70,7 +70,7 @@ Eastern Red Columbine
 Cardinal Flower
 These native annual herbs can add color and variety to your garden. Feel free to explore these options and let me know if you need more information or have any specific preferences!'
 
-The AI agent correctly filters the list based on updated user input.
+**The AI agent correctly filters the list based on updated user input.**
 
 **Example 2**
 
@@ -80,4 +80,4 @@ Prompt:
 Response:
 'I'm sorry, but the information about plants is only available for the states of Michigan or Alabama. If you have a garden in Michigan or Alabama, please let me know the details about your garden.'
 
-The AI agent correctly hints, that the data is not available
+**The AI agent correctly hints, that the data is not available.**
