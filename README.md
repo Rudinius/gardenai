@@ -1,6 +1,6 @@
 # gardenai
 
-## Installation Instructions:
+## Installation instructions using git:
 
 1. Clone the repository 
 `git clone https://github.com/Rudinius/gardenai.git`
@@ -19,17 +19,24 @@
 5. The browser should open with the running application.
 If not open the browser under http://localhost:8501/ or which ever is the output in the terminal.
 
-## API Key
+### API Key
 The API key has to be provided as an environment variable with name
 `GARDENAI_API_KEY`.
 The app uses gpt-3.5-turbo.
 API keys can be created here: https://platform.openai.com/api-keys
 
+## Installation instructions using Docker
+1. Open CLI and pull the docker image from dockerhub `docker pull mircorudolph/gardenai-app`
+2. Run the docker image `docker run -p 8501:8501 -e "GARDENAI_API_KEY=value" mircorudolph/gardenai-app`.`value` in `GARDENAI_API_KEY=value` must be replaced with a valid openai API key.
+3. Open the app in a browser under adress `localhost:8501`
+
 ## Example of usage:
 
 **General**
-Providing text into the chat input field, will send the prompt to the chat agent.
-The reset button will clear all `session_state` and reinitialize the default values.
+
+Providing text into the chat input field, will send the prompt to the chat agent. The response will be displayed in the text box with different icons for user or assistant.
+The reset button will clear all `session_state` and reinitialize the default values. 
+If an error message is provided, this typically means that no API key is provided or another error regarding the openai API occured. In this case, the terminal output of the app has to be checked.
 
 **Example 1**
 
