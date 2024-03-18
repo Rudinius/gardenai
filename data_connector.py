@@ -14,7 +14,9 @@ def load_data(path, file_name):
     file_name = "native_plants_AL_MI_v_1.csv"
     df = pd.read_csv(f"{path}{file_name}")
 
-    print("Data has been loaded")
+    entries = len(df)
+
+    print(f"{entries} entries have been loaded")
 
     return df
 

@@ -5,9 +5,9 @@
 1. Clone the repository 
 `git clone https://github.com/Rudinius/gardenai.git`
 
-2. Create a virtual environment for installing packages
-`python -m venv .venv`
-`cd .venv/Scripts`
+2. Create a virtual environment for installing packages outside the root folder of the cloned repository
+`python -m venv .gardenai_venv`
+`cd .gardenai_venv/Scripts`
 `activate.bat` (for command prompt. choose script depending on console being used)
 
 3. Navigate to the folder gardenai and install the packages of requirements.txt
@@ -27,50 +27,67 @@ API keys can be created here: https://platform.openai.com/api-keys
 
 ## Example of usage:
 
+**General**
+Providing text into the chat input field, will send the prompt to the chat agent.
+The reset button will clear all `session_state` and reinitialize the default values.
+
 **Example 1**
 
 Prompt:
 'I live in Alabama and my garden is sunny, dry and shaded. I prefer trees.'
 
 Response:
-'Based on the information provided for your garden in Alabama (sunny, dry, and shaded) with a preference for trees, here is a list of possible native tree plants:
+'Based on your garden information and preference for trees, here is a list of possible native plants for your garden in Alabama:
 
-Common Serviceberry, Downy Serviceberry, Shadbush, Juneberry, Junebush, Shadblow, Sarvis
-Pignut Hickory, Sweet Pignut Hickory, Coast Pignut Hickory, Pignut, Sweet Pignut, Smoothbark Hickory, Broom Hickory, Red Hickory, Swamp Hickory, Switch Hickory, Switchbud Hickory
-Green Ash, Red Ash, Swamp Ash, River Ash, Water Ash, Darlington Ash
-American Holly, White Holly, Prickly Holly, Evergreen Holly, Christmas Holly, Yule Holly
-Yaupon, Yaupon Holly, Cassina
-Eastern Red Cedar, Eastern Redcedar, Virginia Juniper, Red Juniper, Pencil Cedar, Carolina Cedar, Red Savin
-Eastern Hop-hornbeam, American Hop-hornbeam, Woolly Hop-hornbean, Eastern Ironwood, Roughbark Ironwood, Ironwood, Deerwood, Leverwood
-Longleaf Pine, Georgia Pine, Longleaf Yellow Pine, Southern Yellow Pine, Longstraw Pine, Hill Pine, Hard Pine, Heart Pine
-Chickasaw Plum, Sandhill Plum
-Mexican Plum, Bigtree Plum, Inch Plum
-Black Cherry, Wild Black Cherry, Rum Cherry
-White Oak, Northern White Oak, Eastern White Oak, Stave Oak, Ridge White Oak, Forked-leaf White Oak
-Shumard Oak, Shumard's Oak, Shumard Red Oak, Southern Red Oak, Swamp Red Oak, Spotted Oak
-Black Locust
-American Basswood, American Linden, Lime Tree, Bee Tree
-These native tree plants are suitable for your garden in Alabama. Let me know if you need more information or have any specific preferences!'
+1. Common Serviceberry, Downy Serviceberry, Shadbush, Juneberry, Junebush, Shadblow, Sarvis
+2. Pignut Hickory, Sweet Pignut Hickory, Coast Pignut Hickory, Pignut, Sweet Pignut, Smoothbark Hickory, Broom Hickory, Red Hickory, Swamp Hickory, Switch Hickory, Switchbud Hickory
+3. Green Ash, Red Ash, Swamp Ash, River Ash, Water Ash, Darlington Ash
+4. American Holly, White Holly, Prickly Holly, Evergreen Holly, Christmas Holly, Yule Holly
+5. Yaupon, Yaupon Holly, Cassina
+6. Eastern Red Cedar, Eastern Redcedar, Virginia Juniper, Red Juniper, Pencil Cedar, Carolina Cedar, Red Savin
+7. Eastern Hop-hornbeam, American Hop-hornbeam, Woolly Hop-hornbeam, Eastern Ironwood, Roughbark Ironwood, Ironwood, Deerwood, Leverwood
+8. Longleaf Pine, Georgia Pine, Longleaf Yellow Pine, Southern Yellow Pine, Longstraw Pine, Hill Pine, Hard Pine, Heart Pine
+9. Chickasaw Plum, Sandhill Plum
+10. Mexican Plum, Bigtree Plum, Inch Plum
+11. Black Cherry, Wild Black Cherry, Rum Cherry
+12. White Oak, Northern White Oak, Eastern White Oak, Stave Oak, Ridge White Oak, Forked-leaf White Oak
+13. Shumard Oak, Shumard's Oak, Shumard Red Oak, Southern Red Oak, Swamp Red Oak, Spotted Oak
+14. Black Locust
+15. American Basswood, American Linden, Lime Tree, Bee Tree
+
+These native trees are suitable for a sunny, dry, and shaded garden in Alabama. Let me know if you need more information about any specific plant.'
 
 Prompt:
-'I am also looking for an annual plant.'
+'I am looking for a herb for my same garden instead of a tree'
 
 Response:
-'Here is a list of possible native annual herb plants that may suit your garden in Alabama (sunny and dry):
+'Based on your preference for a herb in a sunny and dry garden in Alabama, here are some native plant options:
 
-Butterfly Milkweed
-Black-eyed Susan
-Coreopsis
-Gaillardia
-Purple Coneflower
-Tickseed
-Scarlet Sage
-Blanket Flower
-Eastern Red Columbine
-Cardinal Flower
-These native annual herbs can add color and variety to your garden. Feel free to explore these options and let me know if you need more information or have any specific preferences!'
+1. Common Yarrow, Western Yarrow, Yarrow, Milfoil
+2. Butterflyweed, Butterfly Weed, Butterfly Milkweed, Orange Milkweed, Pleurisy Root, Chigger Flower, Chiggerweed
+3. Eastern Purple Coneflower, Purple Coneflower
+4. Indian Blanket, Firewheel, Girasol Rojo
+5. Standing Cypress, Texas Plume, Red Texas Star, Red Gilia
+6. Lemon Beebalm, Purple Horsemint, Lemon Mint, Plains Horsemint, Lemon Horsemint, Horsemint, Purple Lemon Mint
+7. Pink Evening Primrose, Showy Evening Primrose, Mexican Evening Primrose, Showy Primrose, Pink Ladies, Buttercups, Pink Buttercups
+8. Mississippi Penstemon, Mississippi Beardtongue, Smooth White Penstemon, Smooth White Beardtongue, Talus Slope Penstemon, Talus Slope Beardtongue, Foxglove Penstemon, Foxglove 9. Beardtongue
+9. Black-eyed Susan, Common Black-eyed Susan, Brown-eyed Susan, Blackeyed Susan
 
-**The AI agent correctly filters the list based on updated user input.**
+These native herbs are suitable for a sunny and dry garden in Alabama. Let me know if you need more information about any specific plant from the list.'
+
+Prompt:
+'The duration of the herb should be annual'
+
+Response:
+'Based on your preference for an annual herb in a sunny and dry garden in Alabama, here are some native plant options:
+
+1. Indian Blanket, Firewheel, Girasol Rojo
+2. Lemon Beebalm, Purple Horsemint, Lemon Mint, Plains Horsemint, Lemon Horsemint, Horsemint, Purple Lemon Mint
+3. Black-eyed Susan, Common Black-eyed Susan, Brown-eyed Susan, Blackeyed Susan
+
+These native annual herbs are suitable for your garden conditions in Alabama. Let me know if you need more information about any specific plant from the list.'
+
+**The AI agent correctly filters the list based on updated user input and finally selects a subset for herbs**
 
 **Example 2**
 

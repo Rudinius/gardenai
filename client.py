@@ -26,6 +26,7 @@ def submit_handler():
 def reset_handler():
 
     # Delete all session state
+    # This way even the data gets cleared and reloaded. This might be inefficient for big data sets
     for key in st.session_state.keys():
         del st.session_state[key]
 
@@ -44,7 +45,7 @@ def main():
     chatbox = st.container(height=300)
 
     # Creating columns for button placement
-    col1, col2 = st.columns([0.9, 0.1])
+    col1, col2 = st.columns([0.80, 0.20])
 
     with col1:
         st.chat_input("Provide the AI agent with your information...", 
