@@ -3,7 +3,7 @@
 ## Installation instructions using git:
 
 1. Clone the repository 
-`git clone https://github.com/Rudinius/gardenai.git`
+`git clone https://github.com/mircorudolph/gardenai.git`
 
 2. Create a virtual environment for installing packages outside the root folder of the cloned repository
 `python -m venv .gardenai_venv`
