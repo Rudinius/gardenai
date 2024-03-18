@@ -8,7 +8,7 @@ def submit_handler():
     # Append the user input to the chat history dictionary
     st.session_state["chat_history"].append({
         "role": "user",
-        "content": f"{st.session_state["user_input"]}"
+        "content": f"{st.session_state['user_input']}"
         })
     
     # Pass the chat history and data to the business logic 
