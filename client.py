@@ -30,9 +30,6 @@ def reset_handler():
     for key in st.session_state.keys():
         del st.session_state[key]
 
-    # Set session state to initial value
-    st.session_state["chat_history"] = chat_history
-
 # Set up the Streamlit layout
 def main():
     # Headline text of the website
