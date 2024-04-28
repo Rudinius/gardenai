@@ -42,7 +42,7 @@ def main():
     st.write("""This conversational AI will help to select a list of native plants 
              based on user input. Only data from the states of Michigan and Alabama are available.""")
 
-    chatbox = st.container(height=300)
+    chatbox = st.container(height=400)
 
     # Creating columns for button placement
     col1, col2 = st.columns([0.80, 0.20])

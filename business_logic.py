@@ -40,8 +40,8 @@ def business_logic(chat_history, df_data):
             # Convert to a list
             plant_selection = list(df_filtered["common_name"].values)
 
-            print(plant_selection)
-
+            #print(arguments)
+            #print(plant_selection)
 
             # Create an intermediate chat_history object
             chat_history_intermediate = chat_history.copy()
