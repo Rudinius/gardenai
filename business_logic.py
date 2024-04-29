@@ -40,6 +40,8 @@ def business_logic(chat_history, df_data):
             # Convert to a list
             plant_selection = list(df_filtered["common_name"].values)
 
+            #print("plant selection:", plant_selection)
+
             #print(arguments)
             #print(plant_selection)
 
@@ -47,12 +49,27 @@ def business_logic(chat_history, df_data):
             chat_history_intermediate = chat_history.copy()
 
             # Add the json response to the the intermediate chat history dictionary
-            chat_history_intermediate.append({"role": "assistant", "content": arguments})
-            
             chat_history_intermediate.append({"role": "system", 
-                                              "content": f"This is a list of possible native plants, \
-                                                based on the user information. Provide this list back \
-                                                to the user in a structured way: {plant_selection}"})
+                                            "content": f"The user has provided the following arguments. \
+                                                Provide these arguments back to the user in a human readable form. \
+                                                Arguments: {arguments}"})
+            
+            # If plants could be retrieved from the database
+            if plant_selection:
+                
+                chat_history_intermediate.append({"role": "system", 
+                                                "content": f"This is a list of possible native plants, \
+                                                    based on the user information. Provide this list back \
+                                                    to the user in a structured way. \
+                                                    Native plants: {plant_selection}"})
+            
+            # No plants could be retrieved from the database
+            else:
+                chat_history_intermediate.append({"role": "system", 
+                                                "content": f"Based on the provided user arguments, \
+                                                    no plants could be retrieved from the database. \
+                                                    Inform the user, that for its provided data, \
+                                                    no suitable plant could be selected."})
 
             # Call the openai api again to create a user friendly response
             try:
