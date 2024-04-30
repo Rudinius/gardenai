@@ -32,6 +32,8 @@ def business_logic(chat_history, df_data):
         # Check if the tools have been called
         if response.choices[0].finish_reason == "tool_calls":
             
+            message = response.choices[0].message
+            function_id = response.choices[0].message.tool_calls[0].id
             arguments = response.choices[0].message.tool_calls[0].function.arguments
 
             # The arguments are in str, so they have to be converted json
@@ -40,40 +42,47 @@ def business_logic(chat_history, df_data):
             # Convert to a list
             plant_selection = list(df_filtered["common_name"].values)
 
-            #print("plant selection:", plant_selection)
-
             #print(arguments)
-            #print(plant_selection)
+            print(plant_selection)
 
             # Create an intermediate chat_history object
             chat_history_intermediate = chat_history.copy()
 
+            chat_history_intermediate.append(message)
+
             # Add the json response to the the intermediate chat history dictionary
-            chat_history_intermediate.append({"role": "system", 
-                                            "content": f"The user has provided the following arguments. \
-                                                Provide these arguments back to the user in a human readable form. \
-                                                Arguments: {arguments}"})
+            #chat_history_intermediate.append({"role": "function", 
+            #                                "content": f"The user has provided the following arguments. \
+            #                                    Provide these arguments back to the user in a human readable form. \
+            #                                    Arguments: {arguments}"})
             
             # If plants could be retrieved from the database
             if plant_selection:
                 
-                chat_history_intermediate.append({"role": "system", 
-                                                "content": f"This is a list of possible native plants, \
-                                                    based on the user information. Provide this list back \
-                                                    to the user in a structured way. \
-                                                    Native plants: {plant_selection}"})
+                chat_history_intermediate.append({
+                    "role": "tool", 
+                    "content": f"This is a list of possible native plants, \
+                                based on the user information. Provide the full list back \
+                                to the user in a structured way. \
+                                Native plants: {plant_selection}", 
+                    "tool_call_id": function_id
+                })
             
             # No plants could be retrieved from the database
             else:
-                chat_history_intermediate.append({"role": "system", 
-                                                "content": f"Based on the provided user arguments, \
-                                                    no plants could be retrieved from the database. \
-                                                    Inform the user, that for its provided data, \
-                                                    no suitable plant could be selected."})
+                #chat_history_intermediate
+                chat_history_intermediate.append({
+                    "role": "tool", 
+                    "content": f"Based on the provided user arguments, \
+                        no plants could be retrieved from the database. \
+                        Inform the user, that for its provided data, \
+                        no suitable plant could be selected.",
+                    "tool_call_id": function_id
+                })
 
             # Call the openai api again to create a user friendly response
             try:
-                # Call the api again with tool_chouice set to none to force a text response
+                # Call the api again with tool_chouice set to none to force a text response 
                 response = get_response_openai(chat_history_intermediate, tool_choice="none")  
 
                 append_assistant_message(response, chat_history)

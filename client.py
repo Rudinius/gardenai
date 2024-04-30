@@ -51,6 +51,8 @@ def main():
     with col2:
         st.button("Reset", on_click=reset_handler)
 
+    
+
     # Print messages in chat history stack
     for chat_message in st.session_state["chat_history"]:
         if chat_message["role"] != "system":
