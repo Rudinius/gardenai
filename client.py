@@ -52,11 +52,13 @@ def main():
         st.button("Reset", on_click=reset_handler)
 
     
-
     # Print messages in chat history stack
     for chat_message in st.session_state["chat_history"]:
-        if chat_message["role"] != "system":
-            chatbox.chat_message(chat_message["role"]).write(chat_message["content"])
+        # We are saving the ChatCompletion object in chat_history
+        # Therefore we need to check if chat_message is actually a dict and therefore a chat message
+        if isinstance(chat_message, dict):
+            if chat_message["role"] in ["user", "assistant"]:
+                chatbox.chat_message(chat_message["role"]).write(chat_message["content"])
 
     # Print error messages to the message stack
     # Error messages are not added to the chat history stack
